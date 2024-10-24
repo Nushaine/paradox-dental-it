@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h2 class="text-center mb-0">Emergency IT Support</h2>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-warning">
+                        <h4 class="alert-heading">Important Notice</h4>
+                        <p>This form is for emergency IT support only. For non-emergency issues, please use our <a href="{{ url_for('contact') }}">regular contact form</a> or submit a ticket through the <a href="{{ url_for('portal_tickets') }}">client portal</a>.</p>
+                        <hr>
+                        <p class="mb-0">Emergency support is available 24/7 for critical issues affecting your practice's operations.</p>
+                    </div>
+
+                    <form method="POST" action="{{ url_for('emergency') }}" class="needs-validation" novalidate>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Contact Name *</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="practice_name" class="form-label">Practice Name *</label>
+                            <input type="text" class="form-control" id="practice_name" name="practice_name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email *</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Phone Number *</label>
+                            <input type="tel" class="form-control" id="phone" name="phone" required>
+                            <div class="form-text">We'll contact you immediately at this number.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="issue_type" class="form-label">Type of Emergency *</label>
+                            <select class="form-select" id="issue_type" name="issue_type" required>
+                                <option value="">Select issue type</option>
+                                <option value="system_down">System Down</option>
+                                <option value="data_access">Cannot Access Patient Data</option>
+                                <option value="security">Security Breach</option>
+                                <option value="hardware">Critical Hardware Failure</option>
+                                <option value="network">Network Outage</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description of Emergency *</label>
+                            <textarea class="form-control" id="description" name="description" rows="4" required></textarea>
+                            <div class="form-text">Please provide as much detail as possible about the emergency.</div>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-danger btn-lg">Submit Emergency Request</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <h5>For immediate assistance, you can also call our emergency hotline:</h5>
+                <p class="display-6">(888) 555-0123</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

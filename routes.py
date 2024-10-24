@@ -1,6 +1,6 @@
 from flask import render_template, request, flash, redirect, url_for, session
 from app import app, db
-from models import Contact, Testimonial, Client, SupportTicket, BlogPost
+from models import Contact, Testimonial, Client, SupportTicket, BlogPost, EmergencyContact
 from functools import wraps
 from datetime import datetime
 from werkzeug.utils import secure_filename
@@ -27,9 +27,33 @@ def admin_required(f):
 @app.route('/')
 def index():
     testimonials = Testimonial.query.all()
-    # Get latest blog posts for homepage
     latest_posts = BlogPost.query.filter_by(published=True).order_by(BlogPost.created_at.desc()).limit(3).all()
     return render_template('index.html', testimonials=testimonials, latest_posts=latest_posts)
+
+@app.route('/emergency', methods=['GET', 'POST'])
+def emergency():
+    if request.method == 'POST':
+        try:
+            emergency_contact = EmergencyContact(
+                name=request.form['name'],
+                practice_name=request.form['practice_name'],
+                email=request.form['email'],
+                phone=request.form['phone'],
+                issue_type=request.form['issue_type'],
+                description=request.form['description']
+            )
+            db.session.add(emergency_contact)
+            db.session.commit()
+            
+            # Here we would typically send SMS notifications to on-call staff
+            # and send an immediate email confirmation
+            
+            flash('Emergency request received. Our team will contact you immediately.', 'success')
+            return redirect(url_for('emergency'))
+        except Exception as e:
+            flash('An error occurred. Please call our emergency hotline.', 'danger')
+            db.session.rollback()
+    return render_template('emergency.html')
 
 @app.route('/services')
 def services():
@@ -111,7 +135,6 @@ def logout():
     flash('You have been logged out', 'info')
     return redirect(url_for('index'))
 
-# Blog routes
 @app.route('/blog')
 def blog_index():
     category = request.args.get('category')
@@ -128,7 +151,6 @@ def blog_post(slug):
     post = BlogPost.query.filter_by(slug=slug, published=True).first_or_404()
     return render_template('blog/post.html', post=post)
 
-# Admin routes for blog management
 @app.route('/admin/blog', methods=['GET', 'POST'])
 @admin_required
 def admin_blog():
@@ -139,7 +161,6 @@ def admin_blog():
         category = request.form['category']
         published = 'published' in request.form
         
-        # Create URL-friendly slug from title
         slug = re.sub(r'[^\w\s-]', '', title.lower())
         slug = re.sub(r'[\s_-]+', '-', slug).strip('-')
         
