@@ -8,18 +8,48 @@
 
 /* Navbar logo styling */
 .navbar-logo {
-    height: 30px;
+    display: inline-block !important;
+    height: 35px;
     width: auto;
-    filter: brightness(100%);
+    max-width: 200px;
+    filter: brightness(0) invert(1);
+    object-fit: contain;
+    margin: 0;
+    padding: 0;
 }
 
 /* Footer logo styling */
 .footer-logo {
-    height: 40px;
+    display: inline-block !important;
+    height: 45px;
     width: auto;
-    filter: brightness(100%);
+    max-width: 250px;
+    filter: brightness(0) invert(1);
+    object-fit: contain;
+    margin: 0;
+    padding: 0;
 }
 
+/* Fix for navbar brand logo container */
+.navbar-brand {
+    display: inline-flex !important;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    max-height: 50px;
+}
+
+.navbar-brand img {
+    height: 35px;
+    width: auto;
+}
+
+.footer-brand img {
+    height: 45px;
+    width: auto;
+}
+
+/* Other existing styles */
 .hero-section {
     padding: 5rem 0;
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
