@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="hero-section text-center py-5">
+    <h1 class="display-4">Specialized IT Solutions for Dental Practices</h1>
+    <p class="lead">Secure, Compliant, and Reliable Technology Services</p>
+    <div class="mt-4">
+        <a href="{{ url_for('contact') }}" class="btn btn-primary btn-lg">Get Started</a>
+    </div>
+</section>
+
+<section class="services-overview py-5">
+    <h2 class="text-center mb-4">Our Services</h2>
+    <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i data-feather="shield" class="mb-3"></i>
+                    <h5 class="card-title">HIPAA Compliance</h5>
+                    <p class="card-text">Ensure your practice meets all healthcare data security requirements.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i data-feather="cloud" class="mb-3"></i>
+                    <h5 class="card-title">Cloud Solutions</h5>
+                    <p class="card-text">Secure cloud storage and backup for patient records.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i data-feather="settings" class="mb-3"></i>
+                    <h5 class="card-title">IT Support</h5>
+                    <p class="card-text">24/7 technical support for your practice's needs.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i data-feather="lock" class="mb-3"></i>
+                    <h5 class="card-title">Security</h5>
+                    <p class="card-text">Advanced cybersecurity protection for your practice.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include 'components/testimonials.html' %}
+
+<section class="cta-section text-center py-5">
+    <h2>Ready to Elevate Your Practice's IT Infrastructure?</h2>
+    <p class="lead">Let's discuss how we can help protect and optimize your dental practice.</p>
+    <a href="{{ url_for('contact') }}" class="btn btn-lg btn-primary">Contact Us Today</a>
+</section>
+{% endblock %}

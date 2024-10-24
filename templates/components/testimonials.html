@@ -1,0 +1,31 @@
+<div class="testimonials py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">What Our Clients Say</h2>
+        <div class="row">
+            {% if testimonials %}
+                {% for testimonial in testimonials %}
+                    <div class="col-md-4 mb-4">
+                        <div class="testimonial-card">
+                            <p class="mb-3">{{ testimonial.content }}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h5 class="mb-0">{{ testimonial.client_name }}</h5>
+                                    <small class="text-muted">{{ testimonial.practice_name }}</small>
+                                </div>
+                                <div class="rating">
+                                    {% for i in range(testimonial.rating) %}
+                                        <i data-feather="star" class="text-warning"></i>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="col-12 text-center">
+                    <p>No testimonials yet.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>

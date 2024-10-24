@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center mb-5">HIPAA Compliance</h1>
+    
+    <div class="row mb-5">
+        <div class="col-md-8 mx-auto">
+            <div class="alert alert-info">
+                <h4 class="alert-heading">Why HIPAA Compliance Matters</h4>
+                <p>In the dental healthcare sector, protecting patient information isn't just good practice—it's the law. HIPAA compliance ensures your practice maintains the highest standards of patient data security while avoiding potential penalties.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h3 class="card-title">Risk Assessment</h3>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Security risk analysis</li>
+                        <li class="list-group-item">Vulnerability scanning</li>
+                        <li class="list-group-item">Gap analysis</li>
+                        <li class="list-group-item">Remediation planning</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h3 class="card-title">Policy Development</h3>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">HIPAA-compliant policies</li>
+                        <li class="list-group-item">Security procedures</li>
+                        <li class="list-group-item">Documentation templates</li>
+                        <li class="list-group-item">Implementation guidance</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h3 class="card-title">Staff Training</h3>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">HIPAA awareness training</li>
+                        <li class="list-group-item">Security best practices</li>
+                        <li class="list-group-item">Incident response training</li>
+                        <li class="list-group-item">Ongoing education</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h3 class="card-title">Ongoing Compliance</h3>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Regular audits</li>
+                        <li class="list-group-item">Policy updates</li>
+                        <li class="list-group-item">Compliance monitoring</li>
+                        <li class="list-group-item">Annual reviews</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mt-5">
+        <h3>Ready to Ensure Your Practice's HIPAA Compliance?</h3>
+        <p class="lead">Let us help you protect your patient data and maintain regulatory compliance.</p>
+        <a href="{{ url_for('contact') }}" class="btn btn-primary btn-lg">Contact Us</a>
+    </div>
+</div>
+{% endblock %}

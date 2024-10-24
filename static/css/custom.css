@@ -1,0 +1,47 @@
+/* Custom styles to complement Bootstrap */
+:root {
+    --primary-color: var(--bs-primary);
+    --secondary-color: var(--bs-secondary);
+}
+
+.hero-section {
+    padding: 5rem 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+    margin-bottom: 2rem;
+}
+
+.card {
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.feather {
+    width: 24px;
+    height: 24px;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+}
+
+.services-overview .feather {
+    width: 40px;
+    height: 40px;
+}
+
+.testimonial-card {
+    background: var(--bs-dark);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.cta-section {
+    background-color: var(--bs-dark);
+    padding: 4rem 0;
+    margin-top: 3rem;
+}
