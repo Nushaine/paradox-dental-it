@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-md-8">
+        <h2>Support Tickets</h2>
+    </div>
+    <div class="col-md-4 text-end">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newTicketModal">
+            <i data-feather="plus-circle" class="me-2"></i>New Ticket
+        </button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Subject</th>
+                                <th>Status</th>
+                                <th>Priority</th>
+                                <th>Created</th>
+                                <th>Updated</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for ticket in tickets %}
+                            <tr>
+                                <td>#{{ ticket.id }}</td>
+                                <td>{{ ticket.subject }}</td>
+                                <td><span class="badge bg-{{ 'success' if ticket.status == 'closed' else 'warning' }}">{{ ticket.status }}</span></td>
+                                <td><span class="badge bg-{{ 'danger' if ticket.priority == 'high' else 'info' if ticket.priority == 'medium' else 'secondary' }}">{{ ticket.priority }}</span></td>
+                                <td>{{ ticket.created_at.strftime('%B %d, %Y') }}</td>
+                                <td>{{ ticket.updated_at.strftime('%B %d, %Y') }}</td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="6" class="text-center">No tickets found</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- New Ticket Modal -->
+<div class="modal fade" id="newTicketModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Create New Support Ticket</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form method="POST">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="subject" class="form-label">Subject</label>
+                        <input type="text" class="form-control" id="subject" name="subject" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea class="form-control" id="description" name="description" rows="4" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="priority" class="form-label">Priority</label>
+                        <select class="form-select" id="priority" name="priority" required>
+                            <option value="low">Low</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Create Ticket</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
