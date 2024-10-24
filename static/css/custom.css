@@ -8,14 +8,16 @@
 
 /* Navbar logo styling */
 .navbar-logo {
-    height: 40px;
+    height: 30px;
     width: auto;
+    filter: brightness(100%);
 }
 
 /* Footer logo styling */
 .footer-logo {
-    height: 50px;
+    height: 40px;
     width: auto;
+    filter: brightness(100%);
 }
 
 .hero-section {
