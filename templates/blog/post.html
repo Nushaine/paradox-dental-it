@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ url_for('blog_index') }}">Blog</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url_for('blog_index', category=post.category) }}">{{ post.category|title }}</a></li>
+                    <li class="breadcrumb-item active">{{ post.title }}</li>
+                </ol>
+            </nav>
+
+            <article>
+                <header class="mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="badge bg-{{ 'info' if post.category == 'security' else 'primary' }}">
+                            {{ post.category|title }}
+                        </span>
+                        <small class="text-muted">Published on {{ post.created_at.strftime('%B %d, %Y') }}</small>
+                    </div>
+                    <h1>{{ post.title }}</h1>
+                </header>
+
+                <div class="blog-content mb-5">
+                    {{ post.content|safe }}
+                </div>
+
+                <footer class="border-top pt-4">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a href="{{ url_for('blog_index') }}" class="btn btn-outline-primary">
+                            <i data-feather="arrow-left" class="me-2"></i>Back to Blog
+                        </a>
+                        <div class="share-buttons">
+                            <span class="me-2">Share:</span>
+                            <a href="https://twitter.com/intent/tweet?url={{ request.url|urlencode }}&text={{ post.title|urlencode }}" 
+                               target="_blank" class="btn btn-outline-info btn-sm">
+                                Twitter
+                            </a>
+                            <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.url|urlencode }}&title={{ post.title|urlencode }}" 
+                               target="_blank" class="btn btn-outline-info btn-sm">
+                                LinkedIn
+                            </a>
+                        </div>
+                    </div>
+                </footer>
+            </article>
+        </div>
+    </div>
+</div>
+{% endblock %}

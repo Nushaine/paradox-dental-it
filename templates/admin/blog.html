@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <h1>Manage Blog Posts</h1>
+        </div>
+        <div class="col-md-4 text-end">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newPostModal">
+                <i data-feather="plus-circle" class="me-2"></i>New Post
+            </button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Category</th>
+                            <th>Created</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for post in posts %}
+                        <tr>
+                            <td>{{ post.title }}</td>
+                            <td><span class="badge bg-{{ 'info' if post.category == 'security' else 'primary' }}">{{ post.category|title }}</span></td>
+                            <td>{{ post.created_at.strftime('%B %d, %Y') }}</td>
+                            <td><span class="badge bg-{{ 'success' if post.published else 'secondary' }}">{{ 'Published' if post.published else 'Draft' }}</span></td>
+                            <td>
+                                <a href="{{ url_for('blog_post', slug=post.slug) }}" class="btn btn-sm btn-outline-primary">View</a>
+                                <button class="btn btn-sm btn-outline-secondary" onclick="editPost({{ post.id }})">Edit</button>
+                            </td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="5" class="text-center">No blog posts found</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- New Post Modal -->
+<div class="modal fade" id="newPostModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Create New Blog Post</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form method="POST">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="title" name="title" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="summary" class="form-label">Summary</label>
+                        <textarea class="form-control" id="summary" name="summary" rows="2" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="content" class="form-label">Content</label>
+                        <textarea class="form-control" id="content" name="content" rows="10" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="category" class="form-label">Category</label>
+                        <select class="form-select" id="category" name="category" required>
+                            <option value="security">Security Tips</option>
+                            <option value="industry">Industry News</option>
+                        </select>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="published" name="published" checked>
+                        <label class="form-check-label" for="published">Publish immediately</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Create Post</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

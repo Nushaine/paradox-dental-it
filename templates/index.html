@@ -51,6 +51,36 @@
     </div>
 </section>
 
+{% if latest_posts %}
+<section class="latest-posts py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Latest Security Tips & Industry News</h2>
+        <div class="row">
+            {% for post in latest_posts %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="badge bg-{{ 'info' if post.category == 'security' else 'primary' }}">
+                                {{ post.category|title }}
+                            </span>
+                            <small class="text-muted">{{ post.created_at.strftime('%B %d, %Y') }}</small>
+                        </div>
+                        <h3 class="card-title h5">{{ post.title }}</h3>
+                        <p class="card-text">{{ post.summary }}</p>
+                        <a href="{{ url_for('blog_post', slug=post.slug) }}" class="btn btn-outline-primary btn-sm">Read More</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-4">
+            <a href="{{ url_for('blog_index') }}" class="btn btn-primary">View All Posts</a>
+        </div>
+    </div>
+</section>
+{% endif %}
+
 {% include 'components/testimonials.html' %}
 
 <section class="cta-section text-center py-5">

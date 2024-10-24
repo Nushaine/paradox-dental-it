@@ -44,3 +44,14 @@ class SupportTicket(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     client_id = db.Column(db.Integer, db.ForeignKey('client.id'), nullable=False)
+
+class BlogPost(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(200), nullable=False)
+    slug = db.Column(db.String(200), nullable=False, unique=True)
+    content = db.Column(db.Text, nullable=False)
+    summary = db.Column(db.Text, nullable=False)
+    category = db.Column(db.String(50), nullable=False)  # 'security' or 'industry'
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    published = db.Column(db.Boolean, default=True)

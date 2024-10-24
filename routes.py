@@ -1,8 +1,10 @@
 from flask import render_template, request, flash, redirect, url_for, session
 from app import app, db
-from models import Contact, Testimonial, Client, SupportTicket
+from models import Contact, Testimonial, Client, SupportTicket, BlogPost
 from functools import wraps
 from datetime import datetime
+from werkzeug.utils import secure_filename
+import re
 
 def login_required(f):
     @wraps(f)
@@ -13,10 +15,21 @@ def login_required(f):
         return f(*args, **kwargs)
     return decorated_function
 
+def admin_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if not session.get('is_admin'):
+            flash('Admin access required', 'danger')
+            return redirect(url_for('index'))
+        return f(*args, **kwargs)
+    return decorated_function
+
 @app.route('/')
 def index():
     testimonials = Testimonial.query.all()
-    return render_template('index.html', testimonials=testimonials)
+    # Get latest blog posts for homepage
+    latest_posts = BlogPost.query.filter_by(published=True).order_by(BlogPost.created_at.desc()).limit(3).all()
+    return render_template('index.html', testimonials=testimonials, latest_posts=latest_posts)
 
 @app.route('/services')
 def services():
@@ -97,3 +110,55 @@ def logout():
     session.pop('client_id', None)
     flash('You have been logged out', 'info')
     return redirect(url_for('index'))
+
+# Blog routes
+@app.route('/blog')
+def blog_index():
+    category = request.args.get('category')
+    query = BlogPost.query.filter_by(published=True)
+    
+    if category:
+        query = query.filter_by(category=category)
+    
+    posts = query.order_by(BlogPost.created_at.desc()).all()
+    return render_template('blog/index.html', posts=posts, category=category)
+
+@app.route('/blog/<slug>')
+def blog_post(slug):
+    post = BlogPost.query.filter_by(slug=slug, published=True).first_or_404()
+    return render_template('blog/post.html', post=post)
+
+# Admin routes for blog management
+@app.route('/admin/blog', methods=['GET', 'POST'])
+@admin_required
+def admin_blog():
+    if request.method == 'POST':
+        title = request.form['title']
+        content = request.form['content']
+        summary = request.form['summary']
+        category = request.form['category']
+        published = 'published' in request.form
+        
+        # Create URL-friendly slug from title
+        slug = re.sub(r'[^\w\s-]', '', title.lower())
+        slug = re.sub(r'[\s_-]+', '-', slug).strip('-')
+        
+        try:
+            post = BlogPost(
+                title=title,
+                slug=slug,
+                content=content,
+                summary=summary,
+                category=category,
+                published=published
+            )
+            db.session.add(post)
+            db.session.commit()
+            flash('Blog post created successfully', 'success')
+            return redirect(url_for('admin_blog'))
+        except Exception as e:
+            flash('An error occurred. Please try again.', 'danger')
+            db.session.rollback()
+    
+    posts = BlogPost.query.order_by(BlogPost.created_at.desc()).all()
+    return render_template('admin/blog.html', posts=posts)
