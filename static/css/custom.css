@@ -1,7 +1,21 @@
 /* Custom styles to complement Bootstrap */
 :root {
-    --primary-color: var(--bs-primary);
+    --primary-color: #4AC7B9;
+    --bs-primary: #4AC7B9;
+    --bs-primary-rgb: 74, 199, 185;
     --secondary-color: var(--bs-secondary);
+}
+
+/* Navbar logo styling */
+.navbar-logo {
+    height: 40px;
+    width: auto;
+}
+
+/* Footer logo styling */
+.footer-logo {
+    height: 50px;
+    width: auto;
 }
 
 .hero-section {
@@ -44,4 +58,24 @@
     background-color: var(--bs-dark);
     padding: 4rem 0;
     margin-top: 3rem;
+}
+
+/* Update button colors to use the brand color */
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: #3AAFA3;
+    border-color: #3AAFA3;
+}
+
+/* Link color updates */
+a {
+    color: var(--primary-color);
+}
+
+a:hover {
+    color: #3AAFA3;
 }
