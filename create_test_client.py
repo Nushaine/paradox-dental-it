@@ -4,7 +4,7 @@ from models import Client
 def create_test_account():
     with app.app_context():
         # Check if test account already exists
-        existing_client = Client.query.filter_by(email="test@example.com").first()
+        existing_client = Client.query.filter_by(email="test@paradoxtech.ca").first()
         if existing_client:
             print("Test account already exists")
             return
@@ -12,7 +12,7 @@ def create_test_account():
         # Create a test client
         test_client = Client()
         test_client.practice_name = "Test Dental Practice"
-        test_client.email = "test@example.com"
+        test_client.email = "test@paradoxtech.ca"
         test_client.phone = "1-833-416-8324"
         test_client.set_password("testpass123")
         

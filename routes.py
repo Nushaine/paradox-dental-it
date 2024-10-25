@@ -45,8 +45,9 @@ def emergency():
             db.session.add(emergency_contact)
             db.session.commit()
             
-            # Here we would typically send SMS notifications to on-call staff
-            # and send an immediate email confirmation
+            # Send notification email to support team
+            support_email = "info@paradoxtech.ca"
+            # Email notification logic would go here
             
             flash('Emergency request received. Our team will contact you immediately.', 'success')
             return redirect(url_for('emergency'))
@@ -77,6 +78,11 @@ def contact():
             )
             db.session.add(new_contact)
             db.session.commit()
+
+            # Send notification to support team
+            support_email = "info@paradoxtech.ca"
+            # Email notification logic would go here
+
             flash('Thank you for your inquiry. We will contact you shortly!', 'success')
             return redirect(url_for('contact'))
         except Exception as e:
