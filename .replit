@@ -15,6 +15,10 @@ author = "agent"
 task = "workflow.run"
 args = "Flask Web Server"
 
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Production Server"
+
 [[workflows.workflow]]
 name = "Flask Web Server"
 author = "agent"
@@ -30,9 +34,33 @@ task = "shell.exec"
 args = "python main.py"
 waitForPort = 5000
 
+[[workflows.workflow]]
+name = "Production Server"
+author = "agent"
+
+[workflows.workflow.metadata]
+agentRequireRestartOnSave = false
+
+[[workflows.workflow.tasks]]
+task = "packager.installForAll"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "gunicorn app:app --bind 0.0.0.0:3000"
+waitForPort = 3000
+
 [deployment]
 deploymentTarget = "static"
 publicDir = "static"
+run = ["sh", "-c", "gunicorn app:app --bind 0.0.0.0:3000"]
+
+[[ports]]
+localPort = 80
+externalPort = 3000
+
+[[ports]]
+localPort = 3000
+externalPort = 3001
 
 [[ports]]
 localPort = 5000
