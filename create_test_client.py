@@ -13,7 +13,7 @@ def create_test_account():
         test_client = Client()
         test_client.practice_name = "Test Dental Practice"
         test_client.email = "test@example.com"
-        test_client.phone = "(555) 123-4567"
+        test_client.phone = "(855) 123-4567"
         test_client.set_password("testpass123")
         
         try:
