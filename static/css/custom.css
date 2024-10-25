@@ -37,6 +37,25 @@
     max-width: 280px;
 }
 
+/* Footer styles */
+footer {
+    position: relative;
+    width: 100%;
+    z-index: 100;
+}
+
+footer .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+footer .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
 /* Hero section and other styles */
 .hero-section {
     padding: 5rem 0;

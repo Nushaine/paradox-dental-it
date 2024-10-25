@@ -23,11 +23,16 @@ author = "agent"
 agentRequireRestartOnSave = false
 
 [[workflows.workflow.tasks]]
+task = "packager.installForAll"
+
+[[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "python main.py"
 waitForPort = 5000
 
 [deployment]
+deploymentTarget = "static"
+publicDir = "'/static/css/custom.css', '/static/images/Paradox Logo.png'"
 run = ["sh", "-c", "python main.py"]
 
 [[ports]]
