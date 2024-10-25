@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Paradox IT Solutions</title>
+    <link rel="stylesheet" href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <script src="https://unpkg.com/feather-icons@4.29.0/dist/feather.min.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/Paradox Logo Horizontal - White Font.png" alt="Paradox" class="navbar-logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="services.html">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="compliance.html">Compliance</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-danger" href="emergency.html">Emergency Support</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Client Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h2 class="text-center mb-4">Contact Us</h2>
+            <div class="card">
+                <div class="card-body">
+                    <form action="https://formspree.io/f/info@paradoxtech.ca" method="POST">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="practice_name" class="form-label">Practice Name</label>
+                            <input type="text" class="form-control" id="practice_name" name="practice_name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Phone Number</label>
+                            <input type="tel" class="form-control" id="phone" name="phone">
+                        </div>
+                        <div class="mb-3">
+                            <label for="service_type" class="form-label">Service Interest</label>
+                            <select class="form-select" id="service_type" name="service_type" required>
+                                <option value="">Select a service</option>
+                                <option value="compliance">HIPAA Compliance</option>
+                                <option value="cloud">Cloud Solutions</option>
+                                <option value="support">IT Support</option>
+                                <option value="security">Security Services</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="images/Paradox Logo Horizontal - White Font.png" alt="Paradox" class="footer-logo mb-2">
+                    <p>Professional IT solutions for dental practices</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="services.html" class="text-light">Services</a></li>
+                        <li><a href="compliance.html" class="text-light">Compliance</a></li>
+                        <li><a href="contact.html" class="text-light">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 contact-info">
+                    <h5>Contact</h5>
+                    <div class="contact-item">
+                        <i data-feather="phone"></i>
+                        <span>1-833-416-8324</span>
+                    </div>
+                    <div class="contact-item">
+                        <i data-feather="mail"></i>
+                        <span>info@paradoxtech.ca</span>
+                    </div>
+                    <div class="contact-item">
+                        <i data-feather="map-pin"></i>
+                        <span>
+                            10 Four Seasons Pl<br>
+                            Suite 1000<br>
+                            Etobicoke, ON M9B6H7
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-3">
+                <p class="mb-0">&copy; 2024 Paradox. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            feather.replace();
+            const observer = new MutationObserver(function() {
+                feather.replace();
+            });
+            observer.observe(document.body, { childList: true, subtree: true });
+        });
+    </script>
+</body>
+</html>
