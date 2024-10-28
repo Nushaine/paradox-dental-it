@@ -46,13 +46,13 @@ task = "packager.installForAll"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "gunicorn app:app --bind 0.0.0.0:3000"
+args = "gunicorn wsgi:app --bind 0.0.0.0:3000 --workers 4 --access-logfile -"
 waitForPort = 3000
 
 [deployment]
 deploymentTarget = "static"
 publicDir = "static"
-run = ["sh", "-c", "gunicorn app:app --bind 0.0.0.0:3000"]
+run = ["sh", "-c", "gunicorn wsgi:app --bind 0.0.0.0:3000 --workers 4 --access-logfile -"]
 
 [[ports]]
 localPort = 80
