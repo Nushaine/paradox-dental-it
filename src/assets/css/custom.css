@@ -1,0 +1,110 @@
+/* Custom styles to complement Bootstrap */
+:root {
+    --primary-color: #4AC7B9;
+    --bs-primary: #4AC7B9;
+    --bs-primary-rgb: 74, 199, 185;
+    --secondary-color: var(--bs-secondary);
+}
+
+/* Navbar logo styling */
+.navbar-logo {
+    display: inline-block !important;
+    height: 45px;
+    width: auto;
+    max-width: 250px;
+    object-fit: contain;
+    margin: 0;
+    padding: 0;
+}
+
+/* Footer logo styling */
+.footer-logo {
+    display: inline-block !important;
+    height: 45px;
+    width: auto;
+    max-width: 250px;
+    object-fit: contain;
+    margin: 0;
+    padding: 0;
+}
+
+/* Fix for navbar brand logo container */
+.navbar-brand {
+    display: inline-flex !important;
+    align-items: center;
+    padding: 0.5rem;
+    margin: 0;
+    max-width: 280px;
+}
+
+/* Footer styles */
+footer {
+    position: relative;
+    width: 100%;
+    z-index: 100;
+}
+
+footer .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+footer .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Hero section and other styles */
+.hero-section {
+    padding: 5rem 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+    margin-bottom: 2rem;
+}
+
+.card {
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.services-overview .feather {
+    width: 40px;
+    height: 40px;
+}
+
+.testimonial-card {
+    background: var(--bs-dark);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.cta-section {
+    background-color: var(--bs-dark);
+    padding: 4rem 0;
+    margin-top: 3rem;
+}
+
+/* Update button colors to use the brand color */
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: #3AAFA3;
+    border-color: #3AAFA3;
+}
+
+/* Link color updates */
+a {
+    color: var(--primary-color);
+}
+
+a:hover {
+    color: #3AAFA3;
+}
