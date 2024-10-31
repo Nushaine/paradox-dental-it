@@ -1,17 +1,19 @@
-import React, { Suspense } from 'react'
+import React, { Suspense, lazy } from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-import NotFound from './components/NotFound'
-import Home from './pages/Home'
-import Services from './pages/Services'
-import Compliance from './pages/Compliance'
-import Blog from './pages/Blog'
-import Contact from './pages/Contact'
-import Emergency from './pages/Emergency'
-import Login from './pages/Login'
-import ClientPortal from './pages/portal/ClientPortal'
-import TicketsDashboard from './pages/portal/TicketsDashboard'
+
+// Lazy load components for better performance
+const Home = lazy(() => import('./pages/Home'))
+const Services = lazy(() => import('./pages/Services'))
+const Compliance = lazy(() => import('./pages/Compliance'))
+const Blog = lazy(() => import('./pages/Blog'))
+const Contact = lazy(() => import('./pages/Contact'))
+const Emergency = lazy(() => import('./pages/Emergency'))
+const Login = lazy(() => import('./pages/Login'))
+const ClientPortal = lazy(() => import('./pages/portal/ClientPortal'))
+const TicketsDashboard = lazy(() => import('./pages/portal/TicketsDashboard'))
+const NotFound = lazy(() => import('./components/NotFound'))
 
 // Loading spinner component
 const LoadingSpinner = () => (
@@ -37,8 +39,15 @@ function App() {
               <Route path="/contact" element={<Contact />} />
               <Route path="/emergency" element={<Emergency />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/portal" element={<ClientPortal />} />
-              <Route path="/portal/tickets" element={<TicketsDashboard />} />
+              <Route 
+                path="/portal/*" 
+                element={
+                  <Routes>
+                    <Route path="/" element={<ClientPortal />} />
+                    <Route path="/tickets" element={<TicketsDashboard />} />
+                  </Routes>
+                }
+              />
               <Route path="/404" element={<NotFound />} />
               <Route path="*" element={<Navigate to="/404" replace />} />
             </Routes>

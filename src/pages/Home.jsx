@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import FeatherIcon from 'feather-icons-react'
 
 function Home() {
@@ -8,7 +9,7 @@ function Home() {
         <h1 className="display-4">Specialized IT Solutions for Dental Practices</h1>
         <p className="lead">Secure, Compliant, and Reliable Technology Services</p>
         <div className="mt-4">
-          <a href="/contact" className="btn btn-primary btn-lg">Get Started</a>
+          <Link to="/contact" className="btn btn-primary btn-lg">Get Started</Link>
         </div>
       </section>
 
@@ -57,7 +58,7 @@ function Home() {
       <section className="cta-section text-center py-5">
         <h2>Ready to Elevate Your Practice's IT Infrastructure?</h2>
         <p className="lead">Let's discuss how we can help protect and optimize your dental practice.</p>
-        <a href="/contact" className="btn btn-lg btn-primary">Contact Us Today</a>
+        <Link to="/contact" className="btn btn-lg btn-primary">Contact Us Today</Link>
       </section>
     </>
   )

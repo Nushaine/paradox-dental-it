@@ -7,8 +7,16 @@ export default defineConfig({
   server: {
     port: 3001,
     host: '0.0.0.0',
-    middlewares: [
-      history()
+    middleware: [
+      history({
+        // Handle history fallback for client-side routing
+        rewrites: [
+          {
+            from: /^\/api\/.*$/,
+            to: ({ parsedUrl }) => parsedUrl.pathname
+          }
+        ]
+      })
     ],
     proxy: {
       '/api': {
@@ -35,7 +43,10 @@ export default defineConfig({
   base: '/',
   resolve: {
     alias: {
-      '@': '/src'
+      '@': '/src',
+      '@components': '/src/components',
+      '@pages': '/src/pages',
+      '@assets': '/src/assets'
     }
   }
 })
